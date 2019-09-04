@@ -86,6 +86,7 @@ class AlignedEllipse(MaskOperation):
 class Rectangle(MaskOperation):
     
     def __init__(self, shape, position, size, invert=False):
+        #position in the center
         self.shape = shape
         self.position = position
         self.size = size
@@ -132,9 +133,18 @@ if __name__ == '__main__':
     shape = (1000, 1200)
     position = (int(shape[0] / 2), int(shape[1] / 2))
     a = AlignedAnnulus(shape, 1/15, 1/7, invert=True)
+    a = AlignedRectangle(shape, 1/5, invert=True)
     import numpy as np
     import matplotlib.pyplot as plt
     im = np.ones(shape)
     plt.imshow(a(im))
     plt.show()
     print(a)
+    
+    shape = (480, 512)
+#    a = Rectangle((480, 512), (0, 256), (240, 512), invert=True)
+    
+    a = Rectangle((480, 512), (240, 0), (480, 502))
+    im = np.ones(shape)
+    plt.imshow(a(im))
+    plt.show()

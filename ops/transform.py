@@ -53,8 +53,8 @@ class ToGreyscale:
     
 class CropRectangle:
     
-    def __init__(self, pos, w, h):
-        self.y, self.x = pos
+    def __init__(self, x, y, w, h):
+        self.y, self.x = y, x
         self.w = w
         self.h = h
         

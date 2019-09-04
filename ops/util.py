@@ -25,11 +25,11 @@ def mask_annulus(shape, position, radii_inner, radii_outer):
 def mask_rect(shape, position, size):
     '''Parameters expected in y, x order, position is the center'''
     mask = np.zeros(shape)
-    width, height = size
+    height, width = size
     c_y, c_x = position
-    mask[int(c_y - width / 2) : int(c_y + width / 2),
-         int(c_x - height / 2) : int(c_y + height / 2)] = 1
-    return mask
+    mask[max(0, int(c_y - height / 2.0)) : int(c_y + height / 2.0),
+         max(0, int(c_x - width / 2.0)) : int(c_x + width / 2.0)] = 1
+    return mask.astype(bool)
 
 def tukeywin2d(shape, alpha=0.3):
     wnd_y = tukeywin(shape[0], alpha=alpha)

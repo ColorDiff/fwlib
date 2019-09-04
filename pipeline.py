@@ -22,7 +22,7 @@ class _ParallelOp:
         
         
     def __call__(self, x):
-        splitted = self.split(x)
+        splitted = self.split_op(x)
         res = [self.pipes[i](x) for i, x in enumerate(splitted)]
         return self.merge_op(*res)
         
@@ -60,7 +60,7 @@ class Pipeline:
         '''
         if idx == -1:
             self.ops.append(op)
-            return len(self.ops - 1)
+            return len(self.ops)
         else:
             self.ops.insert(idx, op)
             return idx
@@ -96,6 +96,8 @@ class Pipeline:
         del self.ops[key]
         
     def __call__(self, input):
-        pass
+        for op in self.ops:
+            input = op(input)
+        return input
         
     

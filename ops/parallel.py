@@ -13,7 +13,7 @@ class CopySplit():
         self.copy_n = copy_n
         
     def __call__(self, x):
-        return [x.copy() for x in range(self.copy_n)]
+        return [x.copy() for _ in range(self.copy_n)]
     
 class MergeGrid():
     
